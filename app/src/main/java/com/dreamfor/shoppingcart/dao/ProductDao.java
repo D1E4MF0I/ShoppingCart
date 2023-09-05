@@ -11,4 +11,6 @@ public interface ProductDao {
     // 设定用户购买商品的数量 返回影响数量
     public long setProductFromUser(int userId, int productId, int quantity);
 
+    // TODO:根据ProductID查询具体Product信息
+
 }
