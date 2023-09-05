@@ -14,8 +14,8 @@ public class SplashScreenActivity extends AppCompatActivity {
     ImageView splash_Screen_RotatoICON;
 
     public static final String LoginShare = "LoginSharePreferences";
-    // TODO:设置ID作为唯一检测，同时仍然存储用户名称
     public static final String KEY_USERNAME = "username";
+    public static final String KEY_USERID = "userID";
 
     private void init(){
         splash_Screen_RotatoICON = findViewById(R.id.splash_Screen_RotatoICON);
@@ -38,22 +38,20 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         setRotate();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                SharedPreferences sharedPreferences = getSharedPreferences(LoginShare, MODE_PRIVATE);
-                String userName = sharedPreferences.getString(KEY_USERNAME, "");
+        new Handler().postDelayed(() -> {
+            SharedPreferences sharedPreferences = getSharedPreferences(LoginShare, MODE_PRIVATE);
+            String userName = sharedPreferences.getString(KEY_USERNAME, "");
+            Integer user_id = sharedPreferences.getInt(KEY_USERID, -1);
 
-                Intent intent;
+            Intent intent;
 
-                if(userName.isEmpty()){
-                    intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
-                } else {
-                    intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                }
-                startActivity(intent);
-                finish();
+            if(userName.isEmpty() || user_id == -1){
+                intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+            } else {
+                intent = new Intent(SplashScreenActivity.this, MainActivity.class);
             }
+            startActivity(intent);
+            finish();
         }, 2000);
     }
 }

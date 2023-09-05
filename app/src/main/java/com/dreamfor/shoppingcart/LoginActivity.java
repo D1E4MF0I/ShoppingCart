@@ -12,7 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.dreamfor.shoppingcart.dao.impl.UserDaoImpl;
 import com.dreamfor.shoppingcart.database.DatabaseHelper;
+import com.dreamfor.shoppingcart.service.UserService;
+import com.dreamfor.shoppingcart.service.impl.UserServiceImpl;
 
 public class LoginActivity extends AppCompatActivity {
     EditText usernameET;
@@ -21,6 +24,8 @@ public class LoginActivity extends AppCompatActivity {
     Button rBtn;
 
     DatabaseHelper dbHelper;
+
+    UserService userService;
 
     private void clearAll(){
         usernameET.setText("");
@@ -33,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         lBtn = findViewById(R.id.login_lButton);
         rBtn = findViewById(R.id.login_rButton);
 
+        userService = new UserServiceImpl(new UserDaoImpl(dbHelper));
+
         dbHelper = new DatabaseHelper(this);
 
         // 在登录按钮点击事件中进行验证
@@ -40,6 +47,8 @@ public class LoginActivity extends AppCompatActivity {
             // 获取输入的用户名和密码
             String username = usernameET.getText().toString().trim();
             String password = passwordET.getText().toString().trim();
+            // 用于保存用户ID
+            Integer user_id = -1;
 
             // 验证用户名和密码是否为空
             if (username.isEmpty() || password.isEmpty()) {
@@ -57,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
 
             // 查询用户信息
             SQLiteDatabase db = dbHelper.getReadableDatabase();
-            String[] columns = {DatabaseHelper.COLUMN_PASSWORD};
+            String[] columns = {DatabaseHelper.COLUMN_PASSWORD, DatabaseHelper.COLUMN_USER_ID};
             String selection = DatabaseHelper.COLUMN_USERNAME + "=?";
             String[] selectionArgs = {username};
             Cursor cursor = null;
@@ -76,6 +85,8 @@ public class LoginActivity extends AppCompatActivity {
                         userExist = true;
                         String pwd = cursor.getString(columnIndex);
                         if (pwd.equals(password)) {
+                            int idIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_USER_ID);
+                            user_id = cursor.getInt(idIndex);
                             loginCK = true;
                             break;
                         }
@@ -83,18 +94,19 @@ public class LoginActivity extends AppCompatActivity {
                 }
 
                 if(userExist){
-                    if(loginCK){
+                    if(loginCK && user_id != -1){
+                        // 记录登录情况
+                        SharedPreferences sharedPreferences = getSharedPreferences(SplashScreenActivity.LoginShare, MODE_PRIVATE);
+                        SharedPreferences.Editor edit = sharedPreferences.edit();
+                        edit.putString(SplashScreenActivity.KEY_USERNAME, username);
+                        edit.putInt(SplashScreenActivity.KEY_USERID, user_id);
+                        edit.apply();
+
                         // 密码匹配成功，跳转到主界面
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
                         // 清楚ET数据
                         clearAll();
-
-                        // 记录登录情况
-                        SharedPreferences sharedPreferences = getSharedPreferences(SplashScreenActivity.LoginShare, MODE_PRIVATE);
-                        SharedPreferences.Editor edit = sharedPreferences.edit();
-                        edit.putString(SplashScreenActivity.KEY_USERNAME, username);
-                        edit.apply();
 
                         startActivity(intent);
                     } else {

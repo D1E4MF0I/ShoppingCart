@@ -15,7 +15,11 @@ public class MainActivity extends AppCompatActivity {
         userNameTV = findViewById(R.id.main_userName);
         SharedPreferences sharedPreferences = getSharedPreferences(SplashScreenActivity.LoginShare,MODE_PRIVATE);
         String username = sharedPreferences.getString(SplashScreenActivity.KEY_USERNAME, "");
-        userNameTV.setText(username);
+        Integer user_id = sharedPreferences.getInt(SplashScreenActivity.KEY_USERID, -1);
+        if(user_id == -1){
+            Toast.makeText(getApplicationContext(), "账号出现故障，请联系系统管理员！", Toast.LENGTH_SHORT).show();
+        }
+        userNameTV.setText("#" + user_id + " " + username);
 
         userNameTV.setOnClickListener(new View.OnClickListener() {
             private long exitTime;
@@ -29,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
                     SharedPreferences sharedPreferences = getSharedPreferences(SplashScreenActivity.LoginShare,MODE_PRIVATE);
                     SharedPreferences.Editor editor = sharedPreferences.edit();
                     editor.putString(SplashScreenActivity.KEY_USERNAME, "");
+                    editor.putInt(SplashScreenActivity.KEY_USERID, -1);
                     editor.apply();
 
                     Toast.makeText(getApplicationContext(), "账号已退出", Toast.LENGTH_SHORT).show();
