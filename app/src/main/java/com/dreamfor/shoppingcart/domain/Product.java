@@ -4,7 +4,6 @@ public class Product {
     private String product_id;
     private String product_name;
     private String price;
-
     private String product_text;
 
     public Product() {

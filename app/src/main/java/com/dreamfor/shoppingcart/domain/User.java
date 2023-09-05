@@ -7,7 +7,7 @@ public class User {
 
     private String username;
     private String password;
-    private List<Integer> selected_products;
+    private List<ProductQuantity> selected_products;
 
     public User() {
     }
@@ -41,11 +41,11 @@ public class User {
         this.password = password;
     }
 
-    public List<Integer> getSelected_products() {
+    public List<ProductQuantity> getSelected_products() {
         return selected_products;
     }
 
-    public void setSelected_products(List<Integer> selected_products) {
+    public void setSelected_products(List<ProductQuantity> selected_products) {
         this.selected_products = selected_products;
     }
 }

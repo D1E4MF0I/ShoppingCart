@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.dreamfor.shoppingcart.dao.impl.UserDaoImpl;
 import com.dreamfor.shoppingcart.database.DatabaseHelper;
+import com.dreamfor.shoppingcart.service.ProductService;
 import com.dreamfor.shoppingcart.service.UserService;
 import com.dreamfor.shoppingcart.service.impl.UserServiceImpl;
 
@@ -26,6 +27,7 @@ public class LoginActivity extends AppCompatActivity {
     DatabaseHelper dbHelper;
 
     UserService userService;
+    ProductService productService;
 
     private void clearAll(){
         usernameET.setText("");

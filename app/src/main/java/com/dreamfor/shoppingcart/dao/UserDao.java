@@ -1,15 +1,17 @@
 package com.dreamfor.shoppingcart.dao;
 
+import com.dreamfor.shoppingcart.domain.ProductQuantity;
 import com.dreamfor.shoppingcart.domain.User;
 
 import java.util.List;
 
 public interface UserDao {
+    // TODO:完善函数逻辑
     // 更新用户选择的商品
-    public void updateSelectedProducts(int userId, List<Integer> selectedProducts);
+    public void updateSelectedProducts(int userId, int productId, int quantity);
 
     // 获取用户选择的商品
-    public List<Integer> getSelectedProducts(int userId);
+    public List<ProductQuantity> getSelectedProducts(int userId);
 
 
     // 显示用户选择的商品
