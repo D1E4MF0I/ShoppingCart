@@ -1,9 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:text="商品列表"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="32dp"></TextView>
+
+        <TextView
+            android:id="@+id/main_userName"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+
+            android:layout_centerInParent="true"
+
+            android:background="@drawable/radius_border"
+            android:paddingLeft="10dp"
+            android:text="用户名"
+            android:textColor="@color/pastel_blue"
+            android:textSize="16dp"></TextView>
+    </RelativeLayout>
+<!--    <ListView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_margin="20dp"-->
+
+<!--        android:background="@drawable/list_border"-->
+<!--        ></ListView>-->
 
 </LinearLayout>

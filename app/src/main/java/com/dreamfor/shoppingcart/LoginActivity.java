@@ -3,6 +3,7 @@ package com.dreamfor.shoppingcart;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -52,7 +53,7 @@ public class LoginActivity extends AppCompatActivity {
                 String usernameRegex = "\\w+"; // 用户名由字母、数字或下划线组成
                 String passwordRegex = ".{6,}"; // 密码至少6位
                 if (!username.matches(usernameRegex) || !password.matches(passwordRegex)) {
-                    Toast.makeText(LoginActivity.this, "用户名或密码格式不正确，请重新输入！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(LoginActivity.this, "用户名或密码格式不正确，请重新输入！\n用户名由字母、数字或下划线组成！\n密码至少6位！", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -63,15 +64,45 @@ public class LoginActivity extends AppCompatActivity {
                 String[] selectionArgs = {username};
                 Cursor cursor = null;
                 try {
-                    cursor = db.query(DatabaseHelper.TABLE_NAME, columns, selection, selectionArgs, null, null, null);
+                    cursor = db.query(DatabaseHelper.TABLE_USERS, columns, selection, selectionArgs, null, null, null);
+
+                    // TODO:改成ID定位用户
+                    boolean loginCK = false;
+
+                    while(cursor.moveToNext()){
+                        int columnIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PASSWORD);
+                        if(columnIndex >= 0){
+                            String pwd = cursor.getString(columnIndex);
+                            if (pwd.equals(password)) {
+                                loginCK = true;
+                                break;
+                            }
+                        }
+                    }
+
                     if (cursor.moveToFirst()) {
-                        String pwd = cursor.getString(cursor.getColumnIndex(DatabaseHelper.COLUMN_PASSWORD));
-                        if (pwd.equals(password)) {
-                            // 密码匹配成功，跳转到主界面
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                            startActivity(intent);
-                        } else {
-                            Toast.makeText(LoginActivity.this, "密码错误，请重新输入！", Toast.LENGTH_SHORT).show();
+
+                        int columnIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PASSWORD);
+
+                        if(columnIndex >= 0){
+                            String pwd = cursor.getString(columnIndex);
+                            if (pwd.equals(password)) {
+                                // 密码匹配成功，跳转到主界面
+                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                                // 清楚ET数据
+                                clearAll();
+
+                                // 记录登录情况
+                                SharedPreferences sharedPreferences = getSharedPreferences(SplashScreenActivity.LoginShare, MODE_PRIVATE);
+                                SharedPreferences.Editor edit = sharedPreferences.edit();
+                                edit.putString(SplashScreenActivity.KEY_USERNAME, username);
+                                edit.apply();
+
+                                startActivity(intent);
+                            } else {
+                                Toast.makeText(LoginActivity.this, "密码错误，请重新输入！", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     } else {
                         Toast.makeText(LoginActivity.this, "该用户名不存在，请重新输入！", Toast.LENGTH_SHORT).show();
@@ -82,19 +113,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     db.close();
                 }
-
-
-
-
-
-
-
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-
-                // 清楚ET数据
-                clearAll();
-
-                startActivity(intent);
             }
         });
 

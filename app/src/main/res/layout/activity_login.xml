@@ -10,7 +10,7 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
 
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="50dp"
         android:src="@drawable/denglu" />
 
@@ -45,9 +45,9 @@
             android:layout_height="wrap_content"
 
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
+            android:layout_alignParentTop="true"
 
-            android:layout_marginBottom="100dp"
+            android:layout_marginTop="100dp"
             android:layout_marginLeft="50dp"
             android:layout_marginRight="50dp"
             >

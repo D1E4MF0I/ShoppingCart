@@ -5,16 +5,33 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
-    public static final String DATABASE_NAME = "user.db";
+    public static final String DATABASE_NAME = "mydatabase.db";
     public static final int DATABASE_VERSION = 1;
-    public static final String TABLE_NAME = "users";
-    public static final String COLUMN_ID = "id";
+
+    // 用户表
+    public static final String TABLE_USERS = "users";
+    public static final String COLUMN_USER_ID = "user_id";
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_PASSWORD = "password";
-    private static final String SQL_CREATE_TABLE = "CREATE TABLE " + TABLE_NAME +
-            "(" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+    public static final String COLUMN_SELECTED_PRODUCTS = "selected_products";
+    private static final String SQL_CREATE_USERS_TABLE = "CREATE TABLE " + TABLE_USERS +
+            "(" + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COLUMN_USERNAME + " TEXT, " +
-            COLUMN_PASSWORD + " TEXT)";
+            COLUMN_PASSWORD + " TEXT, " +
+            COLUMN_SELECTED_PRODUCTS + " TEXT)";
+
+    // 商品表
+    public static final String TABLE_PRODUCTS = "products";
+    public static final String COLUMN_PRODUCT_ID = "product_id";
+    public static final String COLUMN_PRODUCT_NAME = "product_name";
+    public static final String COLUMN_PRICE = "price";
+
+    public static final String COLUMN_PRODUCT_TEXT = "product_text";
+    private static final String SQL_CREATE_PRODUCTS_TABLE = "CREATE TABLE " + TABLE_PRODUCTS +
+            "(" + COLUMN_PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_PRODUCT_NAME + " TEXT, " +
+            COLUMN_PRICE + " REAL, " +
+            COLUMN_PRODUCT_TEXT + " TEXT)";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -22,7 +39,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(SQL_CREATE_TABLE);
+        db.execSQL(SQL_CREATE_USERS_TABLE);
+        db.execSQL(SQL_CREATE_PRODUCTS_TABLE);
     }
 
     @Override
@@ -30,3 +48,4 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // 在这里升级数据库或者删除旧表并重新创建新表
     }
 }
+

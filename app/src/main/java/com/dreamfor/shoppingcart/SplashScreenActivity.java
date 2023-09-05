@@ -13,8 +13,9 @@ import android.widget.ImageView;
 public class SplashScreenActivity extends AppCompatActivity {
     ImageView splash_Screen_RotatoICON;
 
-    private static final String LoginShare = "LoginSharePreferences";
-    private static final String KEY_USERNAME = "username";
+    public static final String LoginShare = "LoginSharePreferences";
+    // TODO:设置ID作为唯一检测，同时仍然存储用户名称
+    public static final String KEY_USERNAME = "username";
 
     private void init(){
         splash_Screen_RotatoICON = findViewById(R.id.splash_Screen_RotatoICON);
