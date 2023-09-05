@@ -36,98 +36,90 @@ public class LoginActivity extends AppCompatActivity {
         dbHelper = new DatabaseHelper(this);
 
         // 在登录按钮点击事件中进行验证
-        lBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 获取输入的用户名和密码
-                String username = usernameET.getText().toString().trim();
-                String password = passwordET.getText().toString().trim();
+        lBtn.setOnClickListener(v -> {
+            // 获取输入的用户名和密码
+            String username = usernameET.getText().toString().trim();
+            String password = passwordET.getText().toString().trim();
 
-                // 验证用户名和密码是否为空
-                if (username.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "请输入用户名和密码！", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+            // 验证用户名和密码是否为空
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "请输入用户名和密码！", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-                // 验证用户名和密码格式是否合法
-                String usernameRegex = "\\w+"; // 用户名由字母、数字或下划线组成
-                String passwordRegex = ".{6,}"; // 密码至少6位
-                if (!username.matches(usernameRegex) || !password.matches(passwordRegex)) {
-                    Toast.makeText(LoginActivity.this, "用户名或密码格式不正确，请重新输入！\n用户名由字母、数字或下划线组成！\n密码至少6位！", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+            // 验证用户名和密码格式是否合法
+            String usernameRegex = "\\w+"; // 用户名由字母、数字或下划线组成
+            String passwordRegex = ".{6,}"; // 密码至少6位
+            if (!username.matches(usernameRegex) || !password.matches(passwordRegex)) {
+                Toast.makeText(LoginActivity.this, "用户名或密码格式不正确，请重新输入！\n用户名由字母、数字或下划线组成！\n密码至少6位！", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-                // 查询用户信息
-                SQLiteDatabase db = dbHelper.getReadableDatabase();
-                String[] columns = {DatabaseHelper.COLUMN_PASSWORD};
-                String selection = DatabaseHelper.COLUMN_USERNAME + "=?";
-                String[] selectionArgs = {username};
-                Cursor cursor = null;
-                try {
-                    cursor = db.query(DatabaseHelper.TABLE_USERS, columns, selection, selectionArgs, null, null, null);
+            // 查询用户信息
+            SQLiteDatabase db = dbHelper.getReadableDatabase();
+            String[] columns = {DatabaseHelper.COLUMN_PASSWORD};
+            String selection = DatabaseHelper.COLUMN_USERNAME + "=?";
+            String[] selectionArgs = {username};
+            Cursor cursor = null;
+            try {
+                cursor = db.query(DatabaseHelper.TABLE_USERS, columns, selection, selectionArgs, null, null, null);
 
-                    // TODO:改成ID定位用户
-                    boolean loginCK = false;
+                // 登录许可
+                boolean loginCK = false;
+                // 用户存在
+                boolean userExist = false;
 
-                    while(cursor.moveToNext()){
-                        int columnIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PASSWORD);
-                        if(columnIndex >= 0){
-                            String pwd = cursor.getString(columnIndex);
-                            if (pwd.equals(password)) {
-                                loginCK = true;
-                                break;
-                            }
+                // 通过扫描所有存在用户，判断密码匹配（解决存在同名用户，不能登录其他用户的情况
+                while(cursor.moveToNext()){
+                    int columnIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PASSWORD);
+                    if(columnIndex >= 0){
+                        userExist = true;
+                        String pwd = cursor.getString(columnIndex);
+                        if (pwd.equals(password)) {
+                            loginCK = true;
+                            break;
                         }
                     }
+                }
 
-                    if (cursor.moveToFirst()) {
+                if(userExist){
+                    if(loginCK){
+                        // 密码匹配成功，跳转到主界面
+                        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
-                        int columnIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PASSWORD);
+                        // 清楚ET数据
+                        clearAll();
 
-                        if(columnIndex >= 0){
-                            String pwd = cursor.getString(columnIndex);
-                            if (pwd.equals(password)) {
-                                // 密码匹配成功，跳转到主界面
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                        // 记录登录情况
+                        SharedPreferences sharedPreferences = getSharedPreferences(SplashScreenActivity.LoginShare, MODE_PRIVATE);
+                        SharedPreferences.Editor edit = sharedPreferences.edit();
+                        edit.putString(SplashScreenActivity.KEY_USERNAME, username);
+                        edit.apply();
 
-                                // 清楚ET数据
-                                clearAll();
-
-                                // 记录登录情况
-                                SharedPreferences sharedPreferences = getSharedPreferences(SplashScreenActivity.LoginShare, MODE_PRIVATE);
-                                SharedPreferences.Editor edit = sharedPreferences.edit();
-                                edit.putString(SplashScreenActivity.KEY_USERNAME, username);
-                                edit.apply();
-
-                                startActivity(intent);
-                            } else {
-                                Toast.makeText(LoginActivity.this, "密码错误，请重新输入！", Toast.LENGTH_SHORT).show();
-                            }
-                        }
+                        startActivity(intent);
                     } else {
-                        Toast.makeText(LoginActivity.this, "该用户名不存在，请重新输入！", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "密码错误，请重新输入！", Toast.LENGTH_SHORT).show();
                     }
-                } finally {
-                    if (cursor != null) {
-                        cursor.close();
-                    }
-                    db.close();
+                } else {
+                    Toast.makeText(LoginActivity.this, "该用户名不存在，请重新输入！", Toast.LENGTH_SHORT).show();
                 }
+            } finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+                db.close();
             }
         });
 
         // 设置注册按钮点击事件
-        rBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 跳转到注册页面
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+        rBtn.setOnClickListener(v -> {
+            // 跳转到注册页面
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
 
-                // 清楚ET数据
-                clearAll();
+            // 清楚ET数据
+            clearAll();
 
-                startActivity(intent);
-            }
+            startActivity(intent);
         });
     }
 
