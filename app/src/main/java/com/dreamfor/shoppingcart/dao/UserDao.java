@@ -6,7 +6,6 @@ import com.dreamfor.shoppingcart.domain.User;
 import java.util.List;
 
 public interface UserDao {
-    // TODO:完善函数逻辑
     // 更新用户选择的商品
     public void updateSelectedProducts(int userId, int productId, int quantity);
 
