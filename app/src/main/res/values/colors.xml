@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+<!--    漂亮粉蓝：-->
+    <color name="pretty_light_blue">#E8F5FF</color> <!-- 主要颜色：漂亮的淡蓝色 -->
+    <color name="pretty_light_pink">#FCE4EC</color> <!-- 辅助颜色：漂亮的淡粉色 -->
+    <color name="pretty_pink">#FF80AB</color> <!-- 强调颜色：漂亮的粉红色 -->
+
+<!--    柔和灰绿：-->
+    <color name="soft_light_aqua">#E9F5F2</color> <!-- 主要颜色：柔和的浅蓝绿色 -->
+    <color name="soft_light_green">#F1F8E9</color> <!-- 辅助颜色：柔和的浅绿色 -->
+    <color name="soft_green">#66BB6A</color> <!-- 强调颜色：柔和的草绿色 -->
+
+<!--    温暖时尚：-->
+    <color name="warm_orange">#FFE0B2</color> <!-- 主要颜色：温暖的橙色 -->
+    <color name="warm_light_orange">#FFF3E0</color> <!-- 辅助颜色：温暖的淡橙色 -->
+    <color name="warm_amber">#FFB74D</color> <!-- 强调颜色：温暖的琥珀色 -->
+
+<!--    粉紫梦幻：-->
+    <color name="dreamy_light_purple">#F3E5F5</color> <!-- 主要颜色：粉紫梦幻的浅紫色 -->
+    <color name="dreamy_light_pink">#F8BBD0</color> <!-- 辅助颜色：粉紫梦幻的淡粉色 -->
+    <color name="dreamy_purple">#BA68C8</color> <!-- 强调颜色：粉紫梦幻的紫色 -->
+
+<!--    清新薄荷：-->
+    <color name="fresh_light_mint">#E0F2F1</color> <!-- 主要颜色：清新的淡蓝绿色 -->
+    <color name="fresh_mint_green">#B2DFDB</color> <!-- 辅助颜色：清新的薄荷绿色 -->
+    <color name="fresh_teal">#26A69A</color> <!-- 强调颜色：清新的青色 -->
+
+    <color name="baby_pink">#FFE6EE</color> <!-- 淡粉色：用于主要颜色 -->
+    <color name="pastel_blue">#B2CCFF</color> <!-- 柔和蓝色：用于辅助颜色 -->
+    <color name="lavender">#E6E6FA</color> <!-- 薰衣草色：用于强调颜色 -->
+    <color name="peach">#FFE5B4</color> <!-- 桃子色：用于主要颜色 -->
+    <color name="mellow_yellow">#FFFACD</color> <!-- 柔和黄色：用于辅助颜色 -->
+
+</resources>
