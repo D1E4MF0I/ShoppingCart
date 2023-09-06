@@ -1,34 +1,39 @@
 package com.dreamfor.shoppingcart.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.dreamfor.shoppingcart.ProductInfoActivity;
 import com.dreamfor.shoppingcart.R;
+import com.dreamfor.shoppingcart.domain.Product;
 import com.dreamfor.shoppingcart.domain.ProductItem;
 
 import java.util.List;
+import java.util.Locale;
 
 public class ProductAdapter extends BaseAdapter {
-    private Context context;
-    private List<ProductItem> productItemList;
+    private List<Product> productList;
+    private LayoutInflater inflater;
 
-    public ProductAdapter(Context context, List<ProductItem> productList) {
-        this.context = context;
-        this.productItemList = productList;
+
+    public ProductAdapter(Context context, List<Product> productList) {
+        this.inflater = LayoutInflater.from(context);
+        this.productList = productList;
     }
 
     @Override
     public int getCount() {
-        return productItemList.size();
+        return productList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return productItemList.get(position);
+        return productList.get(position);
     }
 
     @Override
@@ -40,7 +45,6 @@ public class ProductAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            LayoutInflater inflater = LayoutInflater.from(context);
             convertView = inflater.inflate(R.layout.products_item, parent, false);
 
             holder = new ViewHolder();
@@ -53,10 +57,20 @@ public class ProductAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        ProductItem productItem = productItemList.get(position);
-        holder.pNameTextView.setText(productItem.getProduct_name());
-        holder.pTextView.setText(productItem.getProduct_text());
-        holder.pPriceTextView.setText(String.valueOf(productItem.getPrice()));
+        Product product = productList.get(position);
+        holder.pNameTextView.setText(product.getProduct_name());
+        holder.pTextView.setText(product.getProduct_text());
+        holder.pPriceTextView.setText(String.format(Locale.getDefault(), "%.2f", product.getPrice()));
+
+        convertView.setOnClickListener(v -> {
+            Context context = v.getContext();
+            Intent intent = new Intent(context, ProductInfoActivity.class);
+            intent.putExtra("product_name", product.getProduct_name());
+            intent.putExtra("product_price", product.getPrice());
+            intent.putExtra("product_text", product.getProduct_text());
+            intent.putExtra("product_id", product.getProduct_id());
+            context.startActivity(intent);
+        });
 
         return convertView;
     }
