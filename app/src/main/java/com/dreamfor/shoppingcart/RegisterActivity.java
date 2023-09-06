@@ -57,23 +57,28 @@ public class RegisterActivity extends AppCompatActivity {
                     return;
                 }
 
-                // 验证重复密码
-                if(passwordR.isEmpty()){
-                    Toast.makeText(getApplicationContext(), "请重复密码！", Toast.LENGTH_SHORT).show();
+                if(userService.isUserExists(username)){
+                    Toast.makeText(RegisterActivity.this, "该用户名已存在，请输入其他用户名！", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    if(!password.equals(passwordR)){
-                        Toast.makeText(getApplicationContext(), "两次密码输入不同，请确认密码！", Toast.LENGTH_SHORT).show();
+                    // 验证重复密码
+                    if(passwordR.isEmpty()){
+                        Toast.makeText(getApplicationContext(), "请重复密码！", Toast.LENGTH_SHORT).show();
                         return;
                     } else {
-                        User user = new User(username, password);
-                        if(userService.insertUser(user)){
-                            Toast.makeText(getApplicationContext(), "添加用户成功！", Toast.LENGTH_SHORT).show();
-                            finish();
+                        if(!password.equals(passwordR)){
+                            Toast.makeText(getApplicationContext(), "两次密码输入不同，请确认密码！", Toast.LENGTH_SHORT).show();
                             return;
-                        }else{
-                            Toast.makeText(getApplicationContext(), "添加用户失败！\n用户已存在或密码错误！\n请稍后再试！", Toast.LENGTH_SHORT).show();
-                            return;
+                        } else {
+                            User user = new User(username, password);
+                            if(userService.insertUser(user)){
+                                Toast.makeText(getApplicationContext(), "添加用户成功！", Toast.LENGTH_SHORT).show();
+                                finish();
+                                return;
+                            }else{
+                                Toast.makeText(getApplicationContext(), "添加用户失败！\n用户已存在或密码错误！\n请稍后再试！", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
                         }
                     }
                 }
