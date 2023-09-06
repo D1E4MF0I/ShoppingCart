@@ -10,6 +10,8 @@
         android:src="@drawable/splash_icon"
         android:scaleType="fitXY"
         android:layout_gravity="center"
+
+        android:layout_marginTop="100dp"
         ></ImageView>
 
     <TextView
