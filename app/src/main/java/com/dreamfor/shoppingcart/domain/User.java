@@ -3,11 +3,18 @@ package com.dreamfor.shoppingcart.domain;
 import java.util.List;
 
 public class User {
-    private String user_id;
-
+    private int user_id;
     private String username;
     private String password;
-    private List<ProductQuantity> selected_products;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "user_id=" + user_id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 
     public User() {
     }
@@ -17,11 +24,11 @@ public class User {
         this.password = password;
     }
 
-    public String getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 
@@ -39,13 +46,5 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public List<ProductQuantity> getSelected_products() {
-        return selected_products;
-    }
-
-    public void setSelected_products(List<ProductQuantity> selected_products) {
-        this.selected_products = selected_products;
     }
 }
