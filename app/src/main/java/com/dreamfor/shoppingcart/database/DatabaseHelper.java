@@ -13,9 +13,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_USER_ID = "user_id";
     public static final String COLUMN_USERNAME = "username";
     public static final String COLUMN_PASSWORD = "password";
-
-    // TODO:删除selected_products的使用
-//    public static final String COLUMN_SELECTED_PRODUCTS = "selected_products";
     private static final String SQL_CREATE_USERS_TABLE = "CREATE TABLE " + TABLE_USERS +
             "(" + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COLUMN_USERNAME + " TEXT, " +
