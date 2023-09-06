@@ -2,6 +2,7 @@ package com.dreamfor.shoppingcart;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -68,6 +69,12 @@ public class MainActivity extends AppCompatActivity {
 
                     Toast.makeText(getApplicationContext(), "账号已退出", Toast.LENGTH_SHORT).show();
 
+                    boolean autoLogin = sharedPreferences.getBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
+
+                    if(autoLogin){
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                    }
                     finish();
                 }
             }
@@ -116,9 +123,11 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        // TODO:商品按钮
+        // 商品按钮 按下跳转 同时清空搜索栏
         goodsIB.setOnClickListener(v -> {
-
+            Intent intent = new Intent(MainActivity.this, ProductsShowActivity.class);
+            searchET.setText("");
+            startActivity(intent);
         });
 
     }
@@ -150,5 +159,13 @@ public class MainActivity extends AppCompatActivity {
             productItemList.add(productItem);
         }
         return productItemList;
+    }
+
+    // TODO:退出时候存储
+    @Override
+    protected void onDestroy() {
+
+
+        super.onDestroy();
     }
 }

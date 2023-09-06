@@ -29,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     UserService userService;
     ProductService productService;
 
+    public static final String AUTO_LOGIN_FLAG = "autoLogin";
+
     private void clearAll(){
         usernameET.setText("");
         passwordET.setText("");
@@ -100,6 +102,7 @@ public class LoginActivity extends AppCompatActivity {
                         // 记录登录情况
                         SharedPreferences sharedPreferences = getSharedPreferences(SplashScreenActivity.LoginShare, MODE_PRIVATE);
                         SharedPreferences.Editor edit = sharedPreferences.edit();
+                        edit.putBoolean(AUTO_LOGIN_FLAG, true);
                         edit.putString(SplashScreenActivity.KEY_USERNAME, username);
                         edit.putInt(SplashScreenActivity.KEY_USERID, user_id);
                         edit.apply();
