@@ -1,6 +1,7 @@
 package com.dreamfor.shoppingcart.service.impl;
 
 import com.dreamfor.shoppingcart.dao.ProductDao;
+import com.dreamfor.shoppingcart.domain.Product;
 import com.dreamfor.shoppingcart.domain.ProductQuantity;
 import com.dreamfor.shoppingcart.service.ProductService;
 
@@ -26,5 +27,10 @@ public class ProductServiceImpl implements ProductService {
         }else{
             return false;
         }
+    }
+
+    @Override
+    public Product getProduct(int productId) {
+        return productDao.getProductById(productId);
     }
 }

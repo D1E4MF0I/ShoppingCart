@@ -3,13 +3,13 @@ package com.dreamfor.shoppingcart.domain;
 public class Product {
     private String product_id;
     private String product_name;
-    private String price;
+    private Double price;
     private String product_text;
 
     public Product() {
     }
 
-    public Product(String product_name, String price) {
+    public Product(String product_name, Double price) {
         this.product_name = product_name;
         this.price = price;
     }
@@ -30,11 +30,11 @@ public class Product {
         this.product_name = product_name;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 

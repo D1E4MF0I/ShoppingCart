@@ -1,5 +1,6 @@
 package com.dreamfor.shoppingcart.dao;
 
+import com.dreamfor.shoppingcart.domain.Product;
 import com.dreamfor.shoppingcart.domain.ProductQuantity;
 
 import java.util.List;
@@ -9,8 +10,9 @@ public interface ProductDao {
     List<ProductQuantity> getUserProducts(int userId);
 
     // 设定用户购买商品的数量 返回影响数量
-    public long setProductFromUser(int userId, int productId, int quantity);
+    long setProductFromUser(int userId, int productId, int quantity);
 
-    // TODO:根据ProductID查询具体Product信息
+    // 根据物品ID获取物品所有数据
+    Product getProductById(int productId);
 
 }

@@ -1,5 +1,6 @@
 package com.dreamfor.shoppingcart.service;
 
+import com.dreamfor.shoppingcart.domain.Product;
 import com.dreamfor.shoppingcart.domain.ProductQuantity;
 
 import java.util.List;
@@ -9,5 +10,8 @@ public interface ProductService {
     List<ProductQuantity> getUserProducts(int userId);
 
     // 设定用户购买商品的数量 返回操作结果
-    public boolean setProductAndSyncUser(int userId, int productId, int quantity);
+    boolean setProductAndSyncUser(int userId, int productId, int quantity);
+
+    // 根据物品ID获取物品所有数据
+    Product getProduct(int productId);
 }
