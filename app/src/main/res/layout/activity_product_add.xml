@@ -1,0 +1,159 @@
+<!-- activity_main.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="8dp"
+        >
+        <EditText
+            android:id="@+id/add_pname_et"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentLeft="true"
+
+            android:gravity="center|left"
+            android:textSize="40dp"
+            android:textColor="@android:color/black"
+
+            android:hint="商品名称"
+
+            style="@style/NoUnderlineEditText"
+            />
+
+        <TextView
+            android:id="@+id/add_back_tv"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+
+            android:layout_centerInParent="true"
+            android:background="@drawable/info_back_radius"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+
+            android:gravity="center"
+
+            android:text="返回"
+            android:textColor="@color/black"
+            android:textSize="16dp"></TextView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:layout_marginBottom="8dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:layout_gravity="center"
+
+            android:textColor="@android:color/black"
+            android:textSize="24dp"
+            android:textAlignment="center"
+            tools:text="价格：" />
+
+        <EditText
+            android:id="@+id/add_price_et"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+
+            android:inputType="numberDecimal"
+
+            android:gravity="center"
+
+            style="@style/NoUnderlineEditText"
+
+            android:textColor="@color/warm_amber"
+            android:textSize="32dp"
+
+            android:hint="9.99"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:layout_gravity="center"
+
+            android:textColor="@color/warm_amber"
+            android:textSize="24dp"
+            android:textAlignment="center"
+            tools:text="元" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+
+        android:layout_marginBottom="8dp"
+
+        android:background="@drawable/border_pinfo_tv"
+        >
+        <Button
+            android:id="@+id/add_add_btn"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:layout_margin="5dp"
+
+            android:background="@drawable/ps_button"
+            android:text="添加商品"></Button>
+        <Button
+            android:id="@+id/add_del_btn"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:layout_margin="5dp"
+
+            android:background="@drawable/ps_button"
+            android:text="删除同名商品"></Button>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/add_text_et"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_marginBottom="8dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+
+        android:textColor="@android:color/darker_gray"
+        tools:text="Product description goes here."
+        android:textSize="20dp"
+        android:gravity="top"
+
+        android:background="@drawable/border_pinfo_tv"
+        ></EditText>
+
+</LinearLayout>
