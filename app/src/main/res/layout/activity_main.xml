@@ -17,11 +17,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
-            android:text="商品列表"
+            android:layout_centerInParent="true"
+            android:text="购物车列表"
             android:textAlignment="center"
             android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="32dp"></TextView>
+            android:textSize="32dp"
+            android:textStyle="bold"></TextView>
 
         <TextView
             android:id="@+id/main_userName"
