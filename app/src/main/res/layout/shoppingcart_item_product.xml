@@ -12,11 +12,13 @@
         <TextView
             android:id="@+id/item_name_tv"
 
-            android:layout_width="wrap_content"
+            android:layout_width="175dp"
             android:layout_height="wrap_content"
 
             android:layout_alignParentLeft="true"
-            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+
+            android:gravity="center"
 
             android:textSize="32dp"
             android:text="商品名称"
@@ -28,9 +30,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="10dp"
+
             android:layout_toRightOf="@+id/item_name_tv"
 
-            android:layout_marginLeft="25dp"
+            android:maxLines="2"
+            android:ellipsize="end"
 
             android:text="商品描述区域"
             android:textColor="@color/black"
@@ -46,13 +52,14 @@
         <TextView
             android:id="@+id/item_product_price_tv"
 
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
 
             android:layout_alignParentLeft="true"
 
             android:layout_centerInParent="true"
             android:layout_marginLeft="8dp"
+            android:gravity="center"
             android:text="321.123"
             android:textColor="@color/warm_amber"
             android:textSize="40dp"></TextView>
@@ -74,6 +81,7 @@
                 android:textColor="@color/black"
 
                 android:layout_gravity="center"
+                android:gravity="center"
                 ></TextView>
 
             <EditText
@@ -85,6 +93,8 @@
                 android:text="1"
                 android:textAlignment="center"
                 android:textSize="20dp"
+
+                android:inputType="number"
 
                 android:layout_gravity="center"
 

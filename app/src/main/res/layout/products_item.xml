@@ -2,17 +2,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="20dp"
+    android:paddingTop="20dp"
+    android:paddingBottom="20dp"
     >
 
     <TextView
         android:id="@+id/pitem_pName"
 
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
 
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
+
+        android:gravity="center"
 
         android:text="商品名称"
         android:textColor="@color/black"
@@ -27,8 +30,8 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@+id/pitem_pName"
-        android:layout_marginLeft="20dp"
 
+        android:layout_marginRight="10dp"
         >
         <TextView
             android:id="@+id/pitem_ptext"
@@ -52,6 +55,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
+            android:orientation="horizontal"
             android:layout_gravity="center"
 
             android:layout_marginTop="5dp"
@@ -64,6 +68,8 @@
                 android:text="单价:"
                 android:textSize="20dp"
                 android:textColor="@color/warm_amber"
+
+                android:gravity="center"
                 ></TextView>
 
             <TextView
@@ -72,8 +78,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:gravity="center"
+
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
 
                 android:text="1"
                 android:textColor="@color/red"
@@ -85,6 +93,8 @@
                 android:text="元"
                 android:textSize="20dp"
                 android:textColor="@color/warm_amber"
+
+                android:gravity="right"
                 ></TextView>
         </LinearLayout>
     </LinearLayout>
