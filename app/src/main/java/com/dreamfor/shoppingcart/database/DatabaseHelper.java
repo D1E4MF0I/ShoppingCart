@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PASSWORD = "password";
     private static final String SQL_CREATE_USERS_TABLE = "CREATE TABLE " + TABLE_USERS +
             "(" + COLUMN_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            COLUMN_USERNAME + " TEXT, " +
+            COLUMN_USERNAME + " TEXT UNIQUE, " +
             COLUMN_PASSWORD + " TEXT)";
 
     // 商品表
@@ -27,7 +27,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_PRODUCT_TEXT = "product_text";
     private static final String SQL_CREATE_PRODUCTS_TABLE = "CREATE TABLE " + TABLE_PRODUCTS +
             "(" + COLUMN_PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
-            COLUMN_PRODUCT_NAME + " TEXT, " +
+            COLUMN_PRODUCT_NAME + " TEXT UNIQUE, " +
             COLUMN_PRICE + " REAL, " +
             COLUMN_PRODUCT_TEXT + " TEXT)";
 
