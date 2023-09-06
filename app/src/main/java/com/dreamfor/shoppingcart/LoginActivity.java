@@ -7,19 +7,24 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.dreamfor.shoppingcart.dao.impl.UserDaoImpl;
 import com.dreamfor.shoppingcart.database.DatabaseHelper;
+import com.dreamfor.shoppingcart.domain.User;
 import com.dreamfor.shoppingcart.service.ProductService;
 import com.dreamfor.shoppingcart.service.UserService;
 import com.dreamfor.shoppingcart.service.impl.UserServiceImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class LoginActivity extends AppCompatActivity {
-    EditText usernameET;
+    AutoCompleteTextView usernameACT;
     EditText passwordET;
     Button lBtn;
     Button rBtn;
@@ -32,24 +37,35 @@ public class LoginActivity extends AppCompatActivity {
     public static final String AUTO_LOGIN_FLAG = "autoLogin";
 
     private void clearAll(){
-        usernameET.setText("");
+        usernameACT.setText("");
         passwordET.setText("");
     }
 
     private void init(){
-        usernameET = findViewById(R.id.login_et_username);
+        usernameACT = findViewById(R.id.login_act_username);
         passwordET = findViewById(R.id.login_et_password);
         lBtn = findViewById(R.id.login_lButton);
         rBtn = findViewById(R.id.login_rButton);
 
+        dbHelper = new DatabaseHelper(this);
+
         userService = new UserServiceImpl(new UserDaoImpl(dbHelper));
 
-        dbHelper = new DatabaseHelper(this);
+        // TODO:下拉框
+        List<User> allUsers = userService.getAllUsers();
+        List<String> allUserNames = new ArrayList<>();
+        for (User user : allUsers) {
+            allUserNames.add(user.getUsername());
+        }
+        System.out.println(allUserNames);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(LoginActivity.this, R.layout.dropdown_item, allUserNames);
+        usernameACT.setAdapter(adapter);
 
         // 在登录按钮点击事件中进行验证
         lBtn.setOnClickListener(v -> {
             // 获取输入的用户名和密码
-            String username = usernameET.getText().toString().trim();
+            String username = usernameACT.getText().toString().trim();
             String password = passwordET.getText().toString().trim();
             // 用于保存用户ID
             Integer user_id = -1;

@@ -10,12 +10,12 @@
         android:layout_height="100dp"
         android:layout_gravity="center_horizontal"
 
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="50dp"
         android:src="@drawable/denglu" />
 
-    <EditText
-        android:id="@+id/login_et_username"
+    <AutoCompleteTextView
+        android:id="@+id/login_act_username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Username"
@@ -23,7 +23,13 @@
         android:layout_marginBottom="50dp"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
-        android:inputType="text" />
+
+        android:completionThreshold="0"
+        android:dropDownWidth="match_parent"
+        android:inputType="text"
+        />
+
+
 
     <EditText
         android:id="@+id/login_et_password"
