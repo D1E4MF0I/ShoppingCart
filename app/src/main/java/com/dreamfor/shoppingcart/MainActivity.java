@@ -136,8 +136,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         init();
+    }
+
+    // TODO:（可选优化）
+    @Override
+    protected void onPostResume() {
+        init();
+        super.onPostResume();
     }
 
     private List<ProductItem> getProductItemList(List<ProductQuantity> productQuantityList, List<Product> productList){
@@ -159,13 +165,5 @@ public class MainActivity extends AppCompatActivity {
             productItemList.add(productItem);
         }
         return productItemList;
-    }
-
-    // TODO:退出时候存储
-    @Override
-    protected void onDestroy() {
-
-
-        super.onDestroy();
     }
 }
