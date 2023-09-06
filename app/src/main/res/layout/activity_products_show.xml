@@ -1,9 +1,124 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductsShowActivity">
+    tools:ignore="ExtraText">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+            android:text="商品列表"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="32dp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/ps_back_tv"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+
+            android:layout_centerInParent="true"
+            android:background="@drawable/ps_back_radius"
+            android:paddingLeft="5dp"
+            android:paddingRight="10dp"
+            android:text="返回"
+            android:textColor="@color/black"
+            android:textSize="16dp"></TextView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/search_bar"
+
+            android:paddingRight="10dp"
+            android:paddingLeft="20dp"
+            >
+            <EditText
+                android:id="@+id/ps_search_et"
+
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:layout_gravity="center"
+
+                android:textSize="16dp"
+
+                android:maxLines="1"
+
+                android:inputType="text"
+
+                android:hint="查询已登记商品"
+
+                android:background="@null"
+                ></EditText>
+            <ImageButton
+                android:id="@+id/ps_search_ib"
+
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+
+                android:scaleType="fitXY"
+
+                android:layout_gravity="center"
+
+                android:src="@drawable/search"
+
+                android:background="@null"
+                ></ImageButton>
+
+        </LinearLayout>
+        <ImageButton
+            android:id="@+id/ps_gadd_ib"
+
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/goods_add"
+
+            android:scaleType="fitXY"
+            android:background="@null"
+
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/ps_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:background="@drawable/ps_lv_border"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="20dp"
+
+        android:scrollbars="none" />
+</LinearLayout>
