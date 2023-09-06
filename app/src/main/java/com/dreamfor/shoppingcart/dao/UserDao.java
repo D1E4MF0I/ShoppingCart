@@ -13,9 +13,16 @@ public interface UserDao {
     public List<ProductQuantity> getUserProductQuantities(int userId);
 
 
-    // 显示用户选择的商品
+    // 根据用户ID获取用户所有数据
     public User queryUserByID(int userId);
 
     // 增加用户
     public long insertUser(User user);
+
+
+    // 判断账号是否存在
+    boolean isUserExists(String username);
+
+    // 获取所有用户数据
+    List<User> getAllUsers();
 }

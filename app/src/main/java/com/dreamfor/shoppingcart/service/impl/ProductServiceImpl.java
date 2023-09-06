@@ -39,4 +39,39 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> getProductsByProductQuantities(List<ProductQuantity> productQuantityList) {
         return productDao.getProductsByProductQuantities(productQuantityList);
     }
+
+    @Override
+    public List<Product> getAllProducts() {
+        return productDao.getAllProducts();
+    }
+
+    @Override
+    public boolean updateProduct(Product product) {
+        return productDao.updateProduct(product) > 0;
+    }
+
+    @Override
+    public ProductQuantity getProductQuantityById(int userId, int productId) {
+        return productDao.getProductQuantityById(userId, productId);
+    }
+
+    @Override
+    public boolean insertProduct(Product product) {
+        long id = productDao.insertProduct(product);
+        if(id == -1) return false;
+        else{
+            product.setProduct_id((int) id);
+            return true;
+        }
+    }
+
+    @Override
+    public boolean deleteProductByName(String productName) {
+        return productDao.deleteProductByName(productName) > 0;
+    }
+
+    @Override
+    public boolean isProductExists(String productName) {
+        return productDao.isProductExists(productName);
+    }
 }

@@ -20,7 +20,7 @@ public class UserServiceImpl implements UserService {
         if(id == -1)
             return false;
         else{
-            user.setUser_id(String.valueOf(id));
+            user.setUser_id((int) id);
             return true;
         }
     }
@@ -38,5 +38,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<ProductQuantity> getUserProductQuantities(int userId) {
         return userDao.getUserProductQuantities(userId);
+    }
+
+    @Override
+    public boolean isUserExists(String username) {
+        return userDao.isUserExists(username);
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return userDao.getAllUsers();
     }
 }

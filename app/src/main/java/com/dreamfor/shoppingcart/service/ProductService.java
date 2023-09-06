@@ -20,4 +20,22 @@ public interface ProductService {
 
     // 根据ProductQuantity列表获取物品信息列表
     List<Product> getProductsByProductQuantities(List<ProductQuantity> productQuantityList);
+
+    // 获取所有物品
+    List<Product> getAllProducts();
+
+    // 更新物品所有信息
+    boolean updateProduct(Product product);
+
+    // 根据用户ID和物品ID获取ProductQuantity
+    ProductQuantity getProductQuantityById(int userId, int productId);
+
+    // 添加商品
+    boolean insertProduct(Product product);
+
+    // 通过商品名称删除商品
+    boolean deleteProductByName(String productName);
+
+    // 通过商品名称查询是否有此商品
+    boolean isProductExists(String productName);
 }

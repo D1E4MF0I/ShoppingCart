@@ -17,4 +17,10 @@ public interface UserService {
 
     // 获取用户选择的商品
     List<ProductQuantity> getUserProductQuantities(int userId);
+
+    // 判断账号是否存在
+    boolean isUserExists(String username);
+
+    // 获取所有用户
+    List<User> getAllUsers();
 }
