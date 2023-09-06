@@ -1,0 +1,164 @@
+<!-- activity_main.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:layout_marginBottom="8dp"
+        >
+        <EditText
+            android:id="@+id/info_pName_et"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_alignParentLeft="true"
+
+            android:gravity="center|left"
+            android:textSize="40dp"
+            android:textColor="@android:color/black"
+
+            style="@style/NoUnderlineEditText"
+            tools:text="Product Name" />
+
+        <TextView
+            android:id="@+id/info_back_tv"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+
+            android:layout_centerInParent="true"
+            android:background="@drawable/info_back_radius"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+
+            android:gravity="center"
+            android:text="返回"
+            android:textColor="@color/black"
+            android:textSize="16dp"></TextView>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:layout_marginBottom="8dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:layout_gravity="center"
+
+            android:textColor="@android:color/black"
+            android:textSize="24dp"
+            android:textAlignment="center"
+            tools:text="价格：" />
+
+        <EditText
+            android:id="@+id/info_price_et"
+            android:inputType="numberDecimal"
+
+            style="@style/NoUnderlineEditText"
+            android:layout_width="wrap_content"
+
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+
+            android:layout_marginRight="10dp"
+
+            android:gravity="center"
+
+            android:textColor="@color/warm_amber"
+            android:textSize="32dp"
+            tools:text="9.99" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            android:gravity="center"
+            android:layout_gravity="center"
+
+            android:textColor="@color/warm_amber"
+            android:textSize="24dp"
+            android:textAlignment="center"
+            tools:text="元" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+
+        android:layout_marginBottom="8dp"
+
+        android:background="@drawable/border_pinfo_tv"
+        >
+        <Button
+            android:id="@+id/info_add_btn"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:layout_margin="5dp"
+
+            android:background="@drawable/ps_button"
+            android:text="添加到购物车"></Button>
+        <Button
+            android:id="@+id/info_sub_btn"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:layout_margin="5dp"
+
+            android:background="@drawable/ps_button"
+            android:text="删除"></Button>
+        <Button
+            android:id="@+id/info_up_btn"
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:layout_margin="5dp"
+
+            android:background="@drawable/ps_button"
+            android:text="更改"></Button>
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/info_text_et"
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_marginBottom="8dp"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+
+        android:textColor="@android:color/darker_gray"
+        tools:text="Product description goes here."
+        android:textSize="20dp"
+        android:gravity="top"
+
+        android:background="@drawable/border_pinfo_tv"
+        ></EditText>
+
+</LinearLayout>
