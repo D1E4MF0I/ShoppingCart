@@ -17,6 +17,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     public static final String KEY_USERNAME = "username";
     public static final String KEY_USERID = "userID";
 
+
     private void init(){
         splash_Screen_RotatoICON = findViewById(R.id.splash_Screen_RotatoICON);
     }
@@ -42,10 +43,11 @@ public class SplashScreenActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences = getSharedPreferences(LoginShare, MODE_PRIVATE);
             String userName = sharedPreferences.getString(KEY_USERNAME, "");
             Integer user_id = sharedPreferences.getInt(KEY_USERID, -1);
+            boolean autoLogin = sharedPreferences.getBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
 
             Intent intent;
 
-            if(userName.isEmpty() || user_id == -1){
+            if(userName.isEmpty() || user_id == -1 || !autoLogin){
                 intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
             } else {
                 intent = new Intent(SplashScreenActivity.this, MainActivity.class);
