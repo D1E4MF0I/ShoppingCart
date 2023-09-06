@@ -13,8 +13,8 @@ public interface UserService {
     User queryUserByID(int id);
 
     // 更新用户选择的商品
-    public void updateSelectedProducts(int userId, int productId, int quantity);
+    boolean updateSelectedProducts(int userId, int productId, int quantity);
 
     // 获取用户选择的商品
-    public List<ProductQuantity> getSelectedProducts(int userId);
+    List<ProductQuantity> getUserProductQuantities(int userId);
 }

@@ -16,21 +16,27 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductQuantity> getUserProducts(int userId) {
-        return productDao.getUserProducts(userId);
+        return productDao.getUserProductQuantities(userId);
     }
 
     @Override
     public boolean setProductAndSyncUser(int userId, int productId, int quantity) {
         long updates = productDao.setProductFromUser(userId, productId, quantity);
-        if(updates != -1){
-            return true;
-        }else{
-            return false;
-        }
+        return updates > 0;
     }
 
     @Override
     public Product getProduct(int productId) {
         return productDao.getProductById(productId);
+    }
+
+    @Override
+    public List<Product> getProductsByNameFromDB(String productName) {
+        return productDao.getProductsByNameFromDB(productName);
+    }
+
+    @Override
+    public List<Product> getProductsByProductQuantities(List<ProductQuantity> productQuantityList) {
+        return productDao.getProductsByProductQuantities(productQuantityList);
     }
 }

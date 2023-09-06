@@ -36,15 +36,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_USER_PRODUCT_ID = "user_product_id";
     public static final String COLUMN_USER_ID_FK = "user_id";
     public static final String COLUMN_PRODUCT_ID_FK = "product_id";
+    public static final String COLUMN_PRODUCT_NAME_FK = "product_name";
     public static final String COLUMN_QUANTITY = "quantity";
-
     private static final String SQL_CREATE_USER_PRODUCTS_TABLE = "CREATE TABLE " + TABLE_USER_PRODUCTS +
             "(" + COLUMN_USER_PRODUCT_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
             COLUMN_USER_ID_FK + " INTEGER, " +
             COLUMN_PRODUCT_ID_FK + " INTEGER, " +
             COLUMN_QUANTITY + " INTEGER, " +
+            COLUMN_PRODUCT_NAME_FK + " TEXT, " +
             "FOREIGN KEY(" + COLUMN_USER_ID_FK + ") REFERENCES " + TABLE_USERS + "(" + COLUMN_USER_ID + ")," +
             "FOREIGN KEY(" + COLUMN_PRODUCT_ID_FK + ") REFERENCES " + TABLE_PRODUCTS + "(" + COLUMN_PRODUCT_ID + "))";
+
+
 
 
 

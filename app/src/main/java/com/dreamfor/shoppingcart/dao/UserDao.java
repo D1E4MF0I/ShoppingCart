@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface UserDao {
     // 更新用户选择的商品
-    public void updateSelectedProducts(int userId, int productId, int quantity);
+    public long updateSelectedProducts(int userId, int productId, int quantity);
 
     // 获取用户选择的商品
-    public List<ProductQuantity> getSelectedProducts(int userId);
+    public List<ProductQuantity> getUserProductQuantities(int userId);
 
 
     // 显示用户选择的商品

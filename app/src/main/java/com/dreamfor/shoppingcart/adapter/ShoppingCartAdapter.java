@@ -1,4 +1,4 @@
-package com.dreamfor.shoppingcart.listview;
+package com.dreamfor.shoppingcart.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,33 +10,31 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.dreamfor.shoppingcart.R;
-import com.dreamfor.shoppingcart.domain.Product;
-import com.dreamfor.shoppingcart.domain.ProductQuantity;
+import com.dreamfor.shoppingcart.domain.ProductItem;
 import com.dreamfor.shoppingcart.service.ProductService;
 
 import java.util.List;
 import java.util.Locale;
 
-public class ListViewAdapter extends BaseAdapter {
-    private List<ProductQuantity> productQuantityList;
+public class ShoppingCartAdapter extends BaseAdapter {
+    private List<ProductItem> productItemList;
     private LayoutInflater layoutInflater;
-
     private ProductService productService;
 
-    public ListViewAdapter(Context context, List<ProductQuantity> productQuantityList, ProductService productService) {
-        this.productQuantityList = productQuantityList;
+    public ShoppingCartAdapter(Context context, List<ProductItem> productItemList, ProductService productService) {
+        this.productItemList = productItemList;
         this.layoutInflater = LayoutInflater.from(context);
         this.productService = productService;
     }
 
     @Override
     public int getCount() {
-        return productQuantityList.size();
+        return productItemList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return productQuantityList.get(position);
+        return productItemList.get(position);
     }
 
     @Override
@@ -48,7 +46,7 @@ public class ListViewAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
         if (convertView == null) {
-            convertView = layoutInflater.inflate(R.layout.item_product, parent, false);
+            convertView = layoutInflater.inflate(R.layout.shoppingcart_item_product, parent, false);
             holder = new ViewHolder();
             holder.nameTv = convertView.findViewById(R.id.item_name_tv);
             holder.textTv = convertView.findViewById(R.id.item_product_text_tv);
@@ -62,27 +60,37 @@ public class ListViewAdapter extends BaseAdapter {
         }
 
         // TODO:完善Adapter问题
-        ProductQuantity productQuantity = productQuantityList.get(position);
+        ProductItem productItem = productItemList.get(position);
 
-        Product product = productService.getProduct(productQuantity.getProductId());
-
-        holder.nameTv.setText(product.getProduct_name());
-        holder.textTv.setText(product.getProduct_text());
-        holder.priceTv.setText(String.format(Locale.getDefault(), "%.2f", product.getPrice()));
-        holder.quantityEt.setText(String.valueOf(productQuantity.getQuantity()));
+        holder.nameTv.setText(productItem.getProduct_name());
+        holder.textTv.setText(productItem.getProduct_text());
+        holder.priceTv.setText(String.format(Locale.getDefault(), "%.2f", productItem.getAllPrice()));
+        holder.quantityEt.setText(String.valueOf(productItem.getQuantity()));
 
         holder.addIb.setOnClickListener(v -> {
-            int quantity = productQuantity.getQuantity();
-            productQuantity.setQuantity(quantity + 1);
+            // 计算数量
+            int quantity = productItem.getQuantity();
+            productItem.setQuantity(quantity + 1);
+            // 总金额
+            productItem.setAllPrice(productItem.getAllPrice() + productItem.getPrice());
             notifyDataSetChanged();
         });
 
         holder.subIb.setOnClickListener(v -> {
-            int quantity = productQuantity.getQuantity();
+            // 计算数量
+            int quantity = productItem.getQuantity();
+            // 计算总金额
             if (quantity > 1) {
-                productQuantity.setQuantity(quantity - 1);
-                notifyDataSetChanged();
+                productItem.setQuantity(quantity - 1);
+                productItem.setAllPrice(productItem.getAllPrice() - productItem.getPrice());
+            } else{
+                productItem.setQuantity(0);
+                productItem.setAllPrice(productItem.getAllPrice() - productItem.getPrice());
+                // 从数据库中删除记录
+                productService.setProductAndSyncUser(productItem.getUser_Id(), productItem.getProduct_id(), productItem.getQuantity());
+                productItemList.remove(productItem);
             }
+            notifyDataSetChanged();
         });
         return convertView;
     }

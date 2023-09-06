@@ -20,6 +20,7 @@
             android:text="商品列表"
             android:textAlignment="center"
             android:textColor="@color/black"
+            android:textStyle="bold"
             android:textSize="32dp"></TextView>
 
         <TextView
@@ -40,6 +41,74 @@
             android:textSize="16dp"></TextView>
     </RelativeLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        >
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/search_bar"
+
+            android:paddingRight="10dp"
+            android:paddingLeft="20dp"
+            >
+            <EditText
+                android:id="@+id/main_search_et"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+
+                android:layout_gravity="center"
+
+                android:textSize="16dp"
+
+                android:maxLines="1"
+
+                android:inputType="text"
+
+                android:hint="查询购物车已有商品"
+
+                android:background="@null"
+                ></EditText>
+            <ImageButton
+                android:id="@+id/main_search_ib"
+
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+
+                android:scaleType="fitXY"
+
+                android:layout_gravity="center"
+
+                android:src="@drawable/search"
+
+                android:background="@null"
+                ></ImageButton>
+
+        </LinearLayout>
+        <ImageButton
+            android:id="@+id/main_goods_ib"
+
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/goods"
+
+            android:scaleType="fitXY"
+            android:background="@null"
+
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            />
+    </LinearLayout>
+
     <ListView
         android:id="@+id/main_lv"
         android:layout_width="match_parent"
@@ -52,7 +121,4 @@
         android:layout_marginBottom="20dp"
 
         android:scrollbars="none" />
-
-
-
 </LinearLayout>

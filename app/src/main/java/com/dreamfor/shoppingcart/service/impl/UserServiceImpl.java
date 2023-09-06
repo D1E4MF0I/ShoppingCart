@@ -31,12 +31,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateSelectedProducts(int userId, int productId, int quantity) {
-        userDao.updateSelectedProducts(userId, productId, quantity);
+    public boolean updateSelectedProducts(int userId, int productId, int quantity) {
+        return userDao.updateSelectedProducts(userId, productId, quantity) > 0;
     }
 
     @Override
-    public List<ProductQuantity> getSelectedProducts(int userId) {
-        return userDao.getSelectedProducts(userId);
+    public List<ProductQuantity> getUserProductQuantities(int userId) {
+        return userDao.getUserProductQuantities(userId);
     }
 }

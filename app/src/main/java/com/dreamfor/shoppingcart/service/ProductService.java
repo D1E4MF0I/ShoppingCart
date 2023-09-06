@@ -14,4 +14,10 @@ public interface ProductService {
 
     // 根据物品ID获取物品所有数据
     Product getProduct(int productId);
+
+    // 根据物品名称获取物品列表
+    List<Product> getProductsByNameFromDB(String productName);
+
+    // 根据ProductQuantity列表获取物品信息列表
+    List<Product> getProductsByProductQuantities(List<ProductQuantity> productQuantityList);
 }

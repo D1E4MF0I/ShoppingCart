@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="20dp"
+    >
+
+    <TextView
+        android:id="@+id/pitem_pName"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+
+        android:text="商品名称"
+        android:textColor="@color/black"
+        android:textSize="32dp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="金额:"
+                android:textSize="24dp"
+                android:textColor="@color/black"
+
+                android:layout_gravity="center"
+                ></TextView>
+
+            <TextView
+
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+
+                android:text="1"
+                android:textAlignment="center"
+                android:textSize="20dp"
+
+                android:layout_gravity="center"
+
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+
+                style="@style/NoUnderlineEditText"
+
+                android:background="@drawable/item_edittext_border"
+                ></TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="数量:"
+                android:textSize="24dp"
+                android:textColor="@color/black"
+
+                android:layout_gravity="center"
+                ></TextView>
+
+            <TextView
+
+                android:layout_width="40dp"
+                android:layout_height="wrap_content"
+
+                android:text="1"
+                android:textAlignment="center"
+                android:textSize="20dp"
+
+                android:layout_gravity="center"
+
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+
+                style="@style/NoUnderlineEditText"
+
+                android:background="@drawable/item_edittext_border"
+                ></TextView>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</RelativeLayout>

@@ -20,12 +20,12 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public List<ProductQuantity> getUserProducts(int userId) {
+    public List<ProductQuantity> getUserProductQuantities(int userId) {
         List<ProductQuantity> productQuantities = new ArrayList<>();
 
         SQLiteDatabase db = databaseHelper.getReadableDatabase();
 
-        String[] columns = {"products.product_id", "products.product_name", "user_products.quantity"};
+        String[] columns = {"user_products.product_id", "user_products.product_name", "user_products.quantity"};
 
         // 查询 user_products 表
         String selection = "user_products.user_id = ?";
@@ -34,9 +34,9 @@ public class ProductDaoImpl implements ProductDao {
         Cursor cursor = db.query(DatabaseHelper.TABLE_USER_PRODUCTS, columns, selection, selectionArgs, null, null, null);
 
         while (cursor.moveToNext()) {
-            int productId = cursor.getInt(cursor.getColumnIndexOrThrow("products.product_id"));
-            String productName = cursor.getString(cursor.getColumnIndexOrThrow("products.product_name"));
-            int quantity = cursor.getInt(cursor.getColumnIndexOrThrow("user_products.quantity"));
+            int productId = cursor.getInt(cursor.getColumnIndexOrThrow("product_id"));
+            String productName = cursor.getString(cursor.getColumnIndexOrThrow("product_name"));
+            int quantity = cursor.getInt(cursor.getColumnIndexOrThrow("quantity"));
 
             ProductQuantity productQuantity = new ProductQuantity(productId, productName, quantity);
             productQuantity.setUserId(userId);
@@ -60,15 +60,20 @@ public class ProductDaoImpl implements ProductDao {
 
         Cursor cursor = db.query("user_products", null, selection, selectionArgs, null, null, null);
 
-        long flag = 0;
+        long rowsAffected;
 
         if (cursor.moveToFirst()) {
-            // 已存在购买记录，更新数量
+            // 已存在购买记录
             ContentValues updateValues = new ContentValues();
             updateValues.put("quantity", quantity);
 
-            flag = db.update("user_products", updateValues, selection, selectionArgs);
-            flag--;
+            if (quantity <= 0) {
+                // 数量为 0，删除记录
+                rowsAffected = db.delete("user_products", selection, selectionArgs);
+            } else {
+                // 更新数量
+                rowsAffected = db.update("user_products", updateValues, selection, selectionArgs);
+            }
         } else {
             // 不存在购买记录，插入新记录
             ContentValues userProductValues = new ContentValues();
@@ -76,15 +81,15 @@ public class ProductDaoImpl implements ProductDao {
             userProductValues.put("product_id", productId);
             userProductValues.put("quantity", quantity); // 设置初始数量
 
-            flag = db.insert("user_products", null, userProductValues);
+            rowsAffected = db.insert("user_products", null, userProductValues);
         }
-
 
         cursor.close();
         db.close();
 
-        return flag;
+        return rowsAffected;
     }
+
 
     @Override
     public Product getProductById(int productId) {
@@ -124,5 +129,47 @@ public class ProductDaoImpl implements ProductDao {
 
         cursor.close();
         return product;
+    }
+
+    @Override
+    public List<Product> getProductsByNameFromDB(String productName) {
+        List<Product> productList = new ArrayList<>();
+
+        SQLiteDatabase db = databaseHelper.getReadableDatabase();
+        String query = "SELECT * FROM " + DatabaseHelper.TABLE_PRODUCTS + " WHERE " + DatabaseHelper.COLUMN_PRODUCT_NAME + " LIKE '%" + productName + "%'";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                Product product = new Product();
+                int idIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PRODUCT_ID);
+                int nameIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PRODUCT_NAME);
+                int priceIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PRICE);
+                int textIndex = cursor.getColumnIndex(DatabaseHelper.COLUMN_PRODUCT_TEXT);
+
+
+                product.setProduct_id(cursor.getString(idIndex));
+                product.setProduct_name(cursor.getString(nameIndex));
+                product.setPrice(cursor.getDouble(priceIndex));
+                product.setProduct_text(cursor.getString(textIndex));
+
+                productList.add(product);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return productList;
+    }
+
+    @Override
+    public List<Product> getProductsByProductQuantities(List<ProductQuantity> productQuantityList) {
+        List<Product> productList = new ArrayList<>();
+        for (ProductQuantity productQuantity : productQuantityList) {
+            productList.add(getProductById(productQuantity.getProductId()));
+        }
+        return productList;
     }
 }

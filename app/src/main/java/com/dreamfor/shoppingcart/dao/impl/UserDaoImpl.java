@@ -26,14 +26,14 @@ public class UserDaoImpl implements UserDao {
 
     // 更新用户选择的商品
     @Override
-    public void updateSelectedProducts(int userId, int productId, int quantity) {
-        productDao.setProductFromUser(userId, productId, quantity);
+    public long updateSelectedProducts(int userId, int productId, int quantity) {
+        return productDao.setProductFromUser(userId, productId, quantity);
     }
 
     // 获取用户选择的商品
     @Override
-    public List<ProductQuantity> getSelectedProducts(int userId) {
-        return productDao.getUserProducts(userId);
+    public List<ProductQuantity> getUserProductQuantities(int userId) {
+        return productDao.getUserProductQuantities(userId);
     }
 
     @Override
@@ -51,7 +51,7 @@ public class UserDaoImpl implements UserDao {
                 user.setUser_id(String.valueOf(userId));
                 user.setUsername(cursor.getString(userIndex));
                 user.setPassword(cursor.getString(passIndex));
-                List<ProductQuantity> productQuantityList = productDao.getUserProducts(userId);
+                List<ProductQuantity> productQuantityList = productDao.getUserProductQuantities(userId);
                 user.setSelected_products(productQuantityList);
             }
         }
