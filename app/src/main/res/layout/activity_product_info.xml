@@ -9,29 +9,29 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:orientation="horizontal"
         android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        android:layout_marginBottom="8dp"
-        >
+        android:paddingBottom="10dp">
+
         <EditText
             android:id="@+id/info_pName_et"
 
+            style="@style/NoUnderlineEditText"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
 
-            android:layout_marginRight="75dp"
+            android:layout_height="48dp"
             android:layout_alignParentLeft="true"
 
-            android:maxLines="1"
+            android:layout_marginRight="75dp"
             android:ellipsize="end"
 
             android:gravity="center|left"
-            android:textSize="40dp"
-            android:textColor="@android:color/black"
+            android:maxLines="1"
+            android:text="Product Name"
 
-            style="@style/NoUnderlineEditText"
-            tools:text="Product Name" />
+            android:textColor="@android:color/black"
+            android:textSize="40dp" />
 
         <TextView
             android:id="@+id/info_back_tv"
@@ -42,112 +42,113 @@
 
             android:layout_centerInParent="true"
             android:background="@drawable/info_back_radius"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-
             android:gravity="center"
+            android:paddingLeft="10dp"
+
+            android:paddingRight="10dp"
             android:text="返回"
             android:textColor="@color/black"
-            android:textSize="16dp"></TextView>
+            android:textSize="16dp"/>
     </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-
         android:layout_marginBottom="8dp"
-        >
+
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:gravity="center"
             android:layout_gravity="center"
+            android:gravity="center"
 
-            android:textColor="@android:color/black"
-            android:textSize="24dp"
+            android:text="价格："
             android:textAlignment="center"
-            tools:text="价格：" />
+            android:textColor="@android:color/black"
+            android:textSize="24dp" />
 
         <EditText
             android:id="@+id/info_price_et"
-            android:inputType="numberDecimal"
-
             style="@style/NoUnderlineEditText"
-            android:layout_width="wrap_content"
 
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_gravity="center"
             android:layout_marginLeft="10dp"
-
             android:layout_marginRight="10dp"
+
+            android:ellipsize="end"
 
             android:gravity="center"
 
+            android:inputType="numberDecimal"
             android:maxLines="1"
-            android:ellipsize="end"
 
+            android:text="9.99"
             android:textColor="@color/warm_amber"
-            android:textSize="32dp"
-            tools:text="9.99" />
+            android:textSize="32dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:gravity="center"
             android:layout_gravity="center"
+            android:gravity="center"
 
-            android:textColor="@color/warm_amber"
-            android:textSize="24dp"
+            android:text="元"
             android:textAlignment="center"
-            tools:text="元" />
+            android:textColor="@color/warm_amber"
+            android:textSize="24dp" />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
-
         android:layout_marginBottom="8dp"
 
         android:background="@drawable/border_pinfo_tv"
-        >
+
+        android:orientation="horizontal">
+
         <Button
             android:id="@+id/info_add_btn"
 
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-
             android:layout_margin="5dp"
 
+            android:layout_weight="1"
+
             android:background="@drawable/ps_button"
-            android:text="添加到购物车"></Button>
+            android:text="添加到购物车" />
+
         <Button
             android:id="@+id/info_sub_btn"
 
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-
             android:layout_margin="5dp"
 
+            android:layout_weight="1"
+
             android:background="@drawable/ps_button"
-            android:text="从购物车删除"></Button>
+            android:text="从购物车删除" />
+
         <Button
             android:id="@+id/info_up_btn"
 
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-
             android:layout_margin="5dp"
 
+            android:layout_weight="1"
+
             android:background="@drawable/ps_button"
-            android:text="更改"></Button>
+            android:text="更改" />
     </LinearLayout>
 
     <EditText
@@ -155,17 +156,13 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-
         android:layout_marginBottom="8dp"
+        android:background="@drawable/border_pinfo_tv"
+        android:gravity="top"
         android:paddingLeft="5dp"
         android:paddingRight="5dp"
-
         android:textColor="@android:color/darker_gray"
-        tools:text="Product description goes here."
         android:textSize="20dp"
-        android:gravity="top"
-
-        android:background="@drawable/border_pinfo_tv"
-        ></EditText>
+        tools:text="Product description goes here." />
 
 </LinearLayout>
