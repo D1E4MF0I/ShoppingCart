@@ -18,7 +18,7 @@
             android:id="@+id/add_pname_et"
 
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
 
             android:layout_marginRight="75dp"
 
