@@ -55,14 +55,15 @@
         <TextView
             android:id="@+id/item_product_price_tv"
 
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
             android:layout_alignParentLeft="true"
 
+            android:autoSizeTextType="uniform"
+
             android:layout_centerInParent="true"
             android:layout_marginLeft="8dp"
-
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
@@ -106,6 +107,8 @@
 
                 android:layout_marginRight="10dp"
                 android:layout_marginLeft="10dp"
+
+                android:autoSizeTextType="uniform"
 
                 style="@style/NoUnderlineEditText"
 
