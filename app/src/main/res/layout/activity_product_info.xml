@@ -20,6 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
+            android:layout_marginRight="75dp"
             android:layout_alignParentLeft="true"
 
             android:gravity="center|left"
@@ -129,7 +130,7 @@
             android:layout_margin="5dp"
 
             android:background="@drawable/ps_button"
-            android:text="删除购物车商品"></Button>
+            android:text="从购物车删除"></Button>
         <Button
             android:id="@+id/info_up_btn"
 

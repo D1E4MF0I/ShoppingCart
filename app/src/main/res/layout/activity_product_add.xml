@@ -20,6 +20,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
 
+            android:layout_marginRight="75dp"
+
             android:layout_alignParentLeft="true"
 
             android:gravity="center|left"
@@ -62,12 +64,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:gravity="center"
             android:layout_gravity="center"
+            android:gravity="center"
 
+            android:textAlignment="center"
             android:textColor="@android:color/black"
             android:textSize="24dp"
-            android:textAlignment="center"
             tools:text="价格：" />
 
         <EditText
@@ -99,7 +101,7 @@
             android:gravity="center"
             android:layout_gravity="center"
 
-            android:textColor="@color/warm_amber"
+            android:textColor="@color/black"
             android:textSize="24dp"
             android:textAlignment="center"
             tools:text="元" />
