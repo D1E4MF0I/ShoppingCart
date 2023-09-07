@@ -18,6 +18,9 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
 
+            android:maxLines="1"
+            android:ellipsize="end"
+
             android:gravity="center"
 
             android:textSize="32dp"
@@ -52,14 +55,16 @@
         <TextView
             android:id="@+id/item_product_price_tv"
 
-            android:layout_width="150dp"
+            android:layout_width="180dp"
             android:layout_height="wrap_content"
 
             android:layout_alignParentLeft="true"
 
             android:layout_centerInParent="true"
             android:layout_marginLeft="8dp"
+            android:ellipsize="end"
             android:gravity="center"
+            android:maxLines="1"
             android:text="321.123"
             android:textColor="@color/warm_amber"
             android:textSize="40dp"></TextView>
@@ -74,7 +79,7 @@
             >
             <TextView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
 
                 android:text="数量:"
                 android:textSize="24dp"
@@ -87,8 +92,8 @@
             <EditText
                 android:id="@+id/item_quantity_et"
 
-                android:layout_width="40dp"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="48dp"
 
                 android:text="1"
                 android:textAlignment="center"
@@ -113,8 +118,8 @@
                 <ImageButton
                     android:id="@+id/item_add_ib"
 
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:background="@null"
                     android:scaleType="fitXY"
                     android:src="@drawable/zengjia"
@@ -124,8 +129,8 @@
                 <ImageButton
                     android:id="@+id/item_sub_ib"
 
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:background="@null"
                     android:scaleType="fitXY"
                     android:src="@drawable/jianshao"

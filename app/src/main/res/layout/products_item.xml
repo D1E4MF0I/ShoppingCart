@@ -16,6 +16,8 @@
         android:layout_centerVertical="true"
 
         android:gravity="center"
+        android:maxLines="2"
+        android:ellipsize="end"
 
         android:text="商品名称"
         android:textColor="@color/black"
