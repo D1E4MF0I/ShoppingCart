@@ -36,6 +36,12 @@ public class LoginActivity extends AppCompatActivity {
 
     public static final String AUTO_LOGIN_FLAG = "autoLogin";
 
+    @Override
+    protected void onPostResume() {
+        init();
+        super.onPostResume();
+    }
+
     private void clearAll(){
         usernameACT.setText("");
         passwordET.setText("");

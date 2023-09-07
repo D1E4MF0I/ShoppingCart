@@ -17,6 +17,7 @@ import com.dreamfor.shoppingcart.domain.ProductQuantity;
 import com.dreamfor.shoppingcart.service.ProductService;
 import com.dreamfor.shoppingcart.service.impl.ProductServiceImpl;
 
+import java.text.DecimalFormat;
 import java.util.Locale;
 
 public class ProductInfoActivity extends AppCompatActivity {
@@ -90,10 +91,14 @@ public class ProductInfoActivity extends AppCompatActivity {
                 Double editPrice = Double.valueOf(String.valueOf(info_price_et.getText()));
                 String editText = String.valueOf(info_text_et.getText());
 
+                // 格式化两位数
+                DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+                String formattedPrice = decimalFormat.format(editPrice);
+
                 Product product = new Product();
                 product.setProduct_id(product_id);
                 product.setProduct_name(editName);
-                product.setPrice(editPrice);
+                product.setPrice(Double.valueOf(formattedPrice));
                 product.setProduct_text(editText);
 
                 // 更新商品信息

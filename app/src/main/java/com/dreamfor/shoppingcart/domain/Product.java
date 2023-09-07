@@ -1,5 +1,7 @@
 package com.dreamfor.shoppingcart.domain;
 
+import java.text.DecimalFormat;
+
 public class Product {
     private int product_id;
     private String product_name;
@@ -11,7 +13,12 @@ public class Product {
 
     public Product(String product_name, Double price) {
         this.product_name = product_name;
-        this.price = price;
+
+        // 格式化存储
+        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+        String formattedPrice = decimalFormat.format(price);
+
+        this.price = Double.valueOf(formattedPrice);
     }
 
     public int getProduct_id() {
@@ -35,7 +42,11 @@ public class Product {
     }
 
     public void setPrice(Double price) {
-        this.price = price;
+        // 格式化
+        DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+        String formattedPrice = decimalFormat.format(price);
+
+        this.price = Double.valueOf(formattedPrice);
     }
 
     public String getProduct_text() {
