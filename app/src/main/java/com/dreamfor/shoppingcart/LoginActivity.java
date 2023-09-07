@@ -34,8 +34,6 @@ public class LoginActivity extends AppCompatActivity {
     UserService userService;
     ProductService productService;
 
-    public static final String AUTO_LOGIN_FLAG = "autoLogin";
-
     @Override
     protected void onPostResume() {
         init();
@@ -143,6 +141,8 @@ public class LoginActivity extends AppCompatActivity {
                         clearAll();
 
                         startActivity(intent);
+
+                        finish();
                     } else {
                         Toast.makeText(LoginActivity.this, "密码错误，请重新输入！", Toast.LENGTH_SHORT).show();
                     }

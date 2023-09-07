@@ -29,28 +29,6 @@ public class MainActivity extends AppCompatActivity {
     TextView userNameTV;
     EditText searchET;
 
-    @Override
-    protected void onDestroy() {
-        // 清除登陆记录
-        SharedPreferences sharedPreferences = getSharedPreferences(SplashScreenActivity.LoginShare,MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(SplashScreenActivity.KEY_USERNAME, "");
-        editor.putInt(SplashScreenActivity.KEY_USERID, -1);
-        editor.apply();
-
-        boolean autoLogin = sharedPreferences.getBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
-
-        editor.putBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
-        editor.apply();
-
-        if(autoLogin){
-            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-            startActivity(intent);
-        }
-
-        super.onDestroy();
-    }
-
     ImageButton searchIB;
     ImageButton goodsIB;
     ListView lv;
@@ -91,18 +69,10 @@ public class MainActivity extends AppCompatActivity {
                     editor.putInt(SplashScreenActivity.KEY_USERID, -1);
                     editor.apply();
 
-                    boolean autoLogin = sharedPreferences.getBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
-
-                    editor.putBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
-                    editor.apply();
-
                     Toast.makeText(MainActivity.this, "账号已退出", Toast.LENGTH_SHORT).show();
 
-                    if(autoLogin){
-                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                        startActivity(intent);
-                    }
-
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
                     finish();
                 }
             }
