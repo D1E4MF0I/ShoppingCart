@@ -44,10 +44,14 @@ public class RegisterActivity extends AppCompatActivity {
                 String passwordR = passwordRET.getText().toString().trim();
 
                 // 验证用户名和密码格式是否合法
-                String usernameRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z0-9_]{8,}$\n"; // 用户名必须同时包含字母和数字可选下划线
-                String passwordRegex = ".{8,}"; // 密码至少8位
-                if (!username.matches(usernameRegex) || !password.matches(passwordRegex)) {
-                    Toast.makeText(RegisterActivity.this, "用户名或密码格式不正确，请重新输入！\n用户名必须同时包含字母和数字！\n密码至少8位！", Toast.LENGTH_SHORT).show();
+                String usernameRegex = ".{6,}"; // 用户名至少6位
+                String passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z0-9_]{6,}$"; // 密码必须同时包含字母和数字 至少是6位
+                if(!username.matches(usernameRegex)){
+                    Toast.makeText(RegisterActivity.this, "用户名至少6位", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (!password.matches(passwordRegex)){
+                    Toast.makeText(RegisterActivity.this, "密码必须同时包含字母和数字，至少6位", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
