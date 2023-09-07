@@ -24,6 +24,9 @@
 
             android:layout_alignParentLeft="true"
 
+            android:maxLines="1"
+            android:ellipsize="end"
+
             android:gravity="center|left"
             android:textSize="40dp"
             android:textColor="@android:color/black"
@@ -83,6 +86,9 @@
             android:layout_marginRight="10dp"
 
             android:inputType="numberDecimal"
+
+            android:maxLines="1"
+            android:ellipsize="end"
 
             android:gravity="center"
 
