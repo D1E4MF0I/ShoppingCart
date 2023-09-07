@@ -279,10 +279,16 @@ public class ProductDaoImpl implements ProductDao {
     @Override
     public int deleteProductByName(String productName) {
         SQLiteDatabase db = databaseHelper.getWritableDatabase();
+
+        // 删除商品表中商品
         String whereClause = DatabaseHelper.COLUMN_PRODUCT_NAME + " = ?";
         String[] whereArgs = {productName};
         int delete = db.delete(DatabaseHelper.TABLE_PRODUCTS, whereClause, whereArgs);
-        return delete;
+
+        // 删除中间表商品
+        whereClause = DatabaseHelper.COLUMN_PRODUCT_NAME_FK + " = ?";
+        int delete2 = db.delete(DatabaseHelper.TABLE_USER_PRODUCTS, whereClause, whereArgs);
+        return Math.min(delete, delete2);
     }
 
     @Override
