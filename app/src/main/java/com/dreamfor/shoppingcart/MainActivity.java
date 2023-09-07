@@ -28,6 +28,32 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     TextView userNameTV;
     EditText searchET;
+
+    // TODO:返回消除？
+    @Override
+    protected void onDestroy() {
+        // 清除登陆记录
+        SharedPreferences sharedPreferences = getSharedPreferences(SplashScreenActivity.LoginShare,MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(SplashScreenActivity.KEY_USERNAME, "");
+        editor.putInt(SplashScreenActivity.KEY_USERID, -1);
+        editor.apply();
+
+        Toast.makeText(getApplicationContext(), "账号已退出", Toast.LENGTH_SHORT).show();
+
+        boolean autoLogin = sharedPreferences.getBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
+
+        editor.putBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
+        editor.apply();
+
+        if(autoLogin){
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+        }
+
+        super.onDestroy();
+    }
+
     ImageButton searchIB;
     ImageButton goodsIB;
     ListView lv;
@@ -71,10 +97,14 @@ public class MainActivity extends AppCompatActivity {
 
                     boolean autoLogin = sharedPreferences.getBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
 
+                    editor.putBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
+                    editor.apply();
+
                     if(autoLogin){
                         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(intent);
                     }
+
                     finish();
                 }
             }

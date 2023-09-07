@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 
@@ -43,15 +44,19 @@ public class SplashScreenActivity extends AppCompatActivity {
             SharedPreferences sharedPreferences = getSharedPreferences(LoginShare, MODE_PRIVATE);
             String userName = sharedPreferences.getString(KEY_USERNAME, "");
             Integer user_id = sharedPreferences.getInt(KEY_USERID, -1);
-            boolean autoLogin = sharedPreferences.getBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
+
+            SharedPreferences.Editor edit = sharedPreferences.edit();
 
             Intent intent;
 
-            if(userName.isEmpty() || user_id == -1 || !autoLogin){
+            if(userName.isEmpty() || user_id == -1){
                 intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
             } else {
+                edit.putBoolean(LoginActivity.AUTO_LOGIN_FLAG, true);
                 intent = new Intent(SplashScreenActivity.this, MainActivity.class);
             }
+            edit.apply();
+
             startActivity(intent);
             finish();
         }, 2000);
