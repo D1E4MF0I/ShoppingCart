@@ -14,6 +14,7 @@ import com.dreamfor.shoppingcart.domain.Product;
 import com.dreamfor.shoppingcart.service.ProductService;
 import com.dreamfor.shoppingcart.service.impl.ProductServiceImpl;
 
+import java.text.DecimalFormat;
 import java.util.Locale;
 
 public class ProductAddActivity extends AppCompatActivity {
@@ -42,8 +43,13 @@ public class ProductAddActivity extends AppCompatActivity {
             Product product = new Product();
             product.setProduct_name(String.valueOf(add_pname_et.getText()));
             String priceStr = String.valueOf(add_price_et.getText());
-            priceStr = priceStr.isEmpty() ? "0.00" : String.format(Locale.getDefault(), "%.2f", priceStr);
-            product.setPrice(Double.valueOf(priceStr));
+
+            // 格式化存储
+            priceStr = priceStr.isEmpty() ? "0.00" : priceStr;
+            DecimalFormat decimalFormat = new DecimalFormat("#0.00");
+            String formattedPrice = decimalFormat.format(Double.valueOf(priceStr));
+            product.setPrice(Double.valueOf(formattedPrice));
+
             product.setProduct_text(String.valueOf(add_text_et.getText()));
 
             // 处理空置情况
