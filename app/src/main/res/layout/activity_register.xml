@@ -78,6 +78,7 @@
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:text="取消"
+                android:textColor="@color/white"
                 android:layout_marginLeft="20dp"
                 android:backgroundTint="@color/pastel_blue"
                 />

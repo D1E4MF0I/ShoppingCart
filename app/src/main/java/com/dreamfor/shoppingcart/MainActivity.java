@@ -38,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
         editor.putInt(SplashScreenActivity.KEY_USERID, -1);
         editor.apply();
 
-        Toast.makeText(getApplicationContext(), "账号已退出", Toast.LENGTH_SHORT).show();
-
         boolean autoLogin = sharedPreferences.getBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
 
         editor.putBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
@@ -68,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
         productService = new ProductServiceImpl(new ProductDaoImpl(new DatabaseHelper(this)));
 
-        // 账户名点击退出操作
         SharedPreferences sharedPreferences = getSharedPreferences(SplashScreenActivity.LoginShare,MODE_PRIVATE);
         String username = sharedPreferences.getString(SplashScreenActivity.KEY_USERNAME, "");
         Integer user_id = sharedPreferences.getInt(SplashScreenActivity.KEY_USERID, -1);
@@ -77,13 +74,15 @@ public class MainActivity extends AppCompatActivity {
         }
         userNameTV.setText("#" + user_id + " " + username);
 
+        // 账户名点击退出操作
         userNameTV.setOnClickListener(new View.OnClickListener() {
             private long exitTime;
             @Override
             public void onClick(View v) {
                 if(System.currentTimeMillis() - exitTime > 2000 || exitTime == 0){
-                    Toast.makeText(getApplicationContext(), "再次点击退出账号！", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "再次点击退出账号！", Toast.LENGTH_SHORT).show();
                     exitTime = System.currentTimeMillis();
+                    return;
                 } else {
                     // 清除登陆记录
                     SharedPreferences sharedPreferences = getSharedPreferences(SplashScreenActivity.LoginShare,MODE_PRIVATE);
@@ -92,12 +91,12 @@ public class MainActivity extends AppCompatActivity {
                     editor.putInt(SplashScreenActivity.KEY_USERID, -1);
                     editor.apply();
 
-                    Toast.makeText(getApplicationContext(), "账号已退出", Toast.LENGTH_SHORT).show();
-
                     boolean autoLogin = sharedPreferences.getBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
 
                     editor.putBoolean(LoginActivity.AUTO_LOGIN_FLAG, false);
                     editor.apply();
+
+                    Toast.makeText(MainActivity.this, "账号已退出", Toast.LENGTH_SHORT).show();
 
                     if(autoLogin){
                         Intent intent = new Intent(MainActivity.this, LoginActivity.class);

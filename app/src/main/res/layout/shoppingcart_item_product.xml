@@ -60,16 +60,16 @@
 
             android:layout_alignParentLeft="true"
 
-            android:autoSizeTextType="uniform"
-
             android:layout_centerInParent="true"
+
             android:layout_marginLeft="8dp"
+            android:autoSizeTextType="uniform"
             android:ellipsize="end"
             android:gravity="center"
             android:maxLines="1"
             android:text="321.123"
             android:textColor="@color/warm_amber"
-            android:textSize="40dp"></TextView>
+            android:textSize="24dp"></TextView>
 
         <LinearLayout
             android:layout_width="wrap_content"

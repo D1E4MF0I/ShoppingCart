@@ -67,15 +67,16 @@
 
                 android:layout_marginRight="20dp"
                 />
+
             <Button
                 android:id="@+id/login_rButton"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:text="注册"
                 android:layout_marginLeft="20dp"
+                android:layout_weight="1"
                 android:backgroundTint="@color/pastel_blue"
-                />
+                android:textColor="@color/white"
+                android:text="注册" />
         </LinearLayout>
     </RelativeLayout>
 

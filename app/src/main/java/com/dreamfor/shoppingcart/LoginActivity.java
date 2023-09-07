@@ -77,8 +77,12 @@ public class LoginActivity extends AppCompatActivity {
             Integer user_id = -1;
 
             // 验证用户名和密码是否为空
-            if (username.isEmpty() || password.isEmpty()) {
-                Toast.makeText(LoginActivity.this, "请输入用户名和密码！", Toast.LENGTH_SHORT).show();
+            if (username.isEmpty()) {
+                Toast.makeText(getApplicationContext(), "请输入注册用户名！", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            if (password.isEmpty()){
+                Toast.makeText(getApplicationContext(), "请输入注册密码！", Toast.LENGTH_SHORT).show();
                 return;
             }
 

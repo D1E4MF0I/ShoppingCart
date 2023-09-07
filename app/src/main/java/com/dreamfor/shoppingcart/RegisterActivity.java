@@ -43,6 +43,16 @@ public class RegisterActivity extends AppCompatActivity {
                 String password = passwordET.getText().toString().trim();
                 String passwordR = passwordRET.getText().toString().trim();
 
+                // 验证用户名和密码是否为空
+                if (username.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "请输入注册用户名！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (password.isEmpty()){
+                    Toast.makeText(getApplicationContext(), "请输入注册密码！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
                 // 验证用户名和密码格式是否合法
                 String usernameRegex = ".{6,}"; // 用户名至少6位
                 String passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z0-9_]{6,}$"; // 密码必须同时包含字母和数字 至少是6位
@@ -52,12 +62,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }
                 if (!password.matches(passwordRegex)){
                     Toast.makeText(RegisterActivity.this, "密码必须同时包含字母和数字，至少6位", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                // 验证用户名和密码是否为空
-                if (username.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "请输入注册用户名和密码！", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
