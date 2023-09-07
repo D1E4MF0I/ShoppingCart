@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     TextView userNameTV;
     EditText searchET;
 
-    // TODO:返回消除？
     @Override
     protected void onDestroy() {
         // 清除登陆记录
@@ -118,7 +117,6 @@ public class MainActivity extends AppCompatActivity {
         List<Product> productList = productService.getProductsByProductQuantities(productQuantityList);
 
 
-        // TODO:Adapter更新优化（未测试
         // 设定Adapter
         List<ProductItem> productItemList = getProductItemList(productQuantityList, productList);
 
@@ -169,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
         init();
     }
 
-    // TODO:（可选优化）
     @Override
     protected void onPostResume() {
         init();

@@ -51,7 +51,7 @@ public class LoginActivity extends AppCompatActivity {
 
         userService = new UserServiceImpl(new UserDaoImpl(dbHelper));
 
-        // TODO:下拉框
+        // 下拉框，自动填充
         List<User> allUsers = userService.getAllUsers();
         List<String> allUserNames = new ArrayList<>();
         for (User user : allUsers) {
