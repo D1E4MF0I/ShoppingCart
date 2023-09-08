@@ -137,7 +137,7 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        setStatusBar();
+//        setStatusBar();
         init();
     }
 }

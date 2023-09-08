@@ -127,7 +127,7 @@ public class ProductsShowActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_show);
 
-        setStatusBar();
+//        setStatusBar();
         // TODO:商品展示列表
         init();
 

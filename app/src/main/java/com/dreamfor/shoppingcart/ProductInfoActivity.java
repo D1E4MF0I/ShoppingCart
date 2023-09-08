@@ -189,7 +189,7 @@ public class ProductInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_info);
 
-        setStatusBar();
+//        setStatusBar();
         init();
     }
 }
