@@ -288,7 +288,7 @@ public class ProductDaoImpl implements ProductDao {
         // 删除中间表商品
         whereClause = DatabaseHelper.COLUMN_PRODUCT_NAME_FK + " = ?";
         int delete2 = db.delete(DatabaseHelper.TABLE_USER_PRODUCTS, whereClause, whereArgs);
-        return Math.min(delete, delete2);
+        return Math.max(delete, delete2);
     }
 
     @Override
